@@ -7,6 +7,8 @@ sealed class ShoppingCartEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class LoadCartEvent extends ShoppingCartEvent {}
+
 class AddCartEvent extends ShoppingCartEvent {
   final Product product;
 
