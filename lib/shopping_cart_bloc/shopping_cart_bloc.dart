@@ -6,6 +6,7 @@ part 'shopping_cart_event.dart';
 part 'shopping_cart_state.dart';
 
 class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
+  final List<Product> _cart = [];
   ShoppingCartBloc() : super(ShoppingCartInitial()) {
     on<LoadCartEvent>((event, emit) {
       emit(ShoppingCartLoading());
@@ -25,8 +26,10 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
       emit(ShoppingCartLoading());
       try {
         
+        // final currentEvent = event;
+        _cart.add(Product(id: event.product.id, name: event.product.name, price: event.product.price));
       } catch (e) {
-        
+        emit(ShoppingCartError(errorMessage: 'Error: $e'));
       }
     });
     on<RemoveCartEvent>((event, emit) {
@@ -34,6 +37,10 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     });
     on<UpdateCartEvent>((event, emit) {
       
+    });
+    on<LoadMyCartEvent>((event, emit) {
+      // emit(ShoppingCartLoading());
+      emit(MyShoppingCartLoaded(cart: _cart));
     });
   }
 }

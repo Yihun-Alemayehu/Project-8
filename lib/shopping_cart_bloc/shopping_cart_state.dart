@@ -28,3 +28,12 @@ class ShoppingCartError extends ShoppingCartState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class MyShoppingCartLoaded extends ShoppingCartState {
+  final List<Product> cart;
+
+  const MyShoppingCartLoaded({required this.cart});
+
+  @override
+  List<Object> get props => [cart];
+}
