@@ -23,7 +23,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
       }
     });
     on<AddCartEvent>((event, emit) {
-      emit(ShoppingCartLoading());
+      // emit(ShoppingCartLoading());
       try {
         
         // final currentEvent = event;
